@@ -12,7 +12,13 @@ To select and order the data from the datastore
 To select and then filter data from the datastore
 
     ./gradlew run --args="-s stb,title -f title='the hobbit'"
-     
+    
+    
+  
+<img src="/Screen Shot 2019-05-15 at 3.27.01 PM.png" width="400" />
+<img src="/Screen Shot 2019-05-15 at 3.29.28 PM.png" width="400" />
+ 
+      
 ### Design 
 
 #### Importer and Datastore
