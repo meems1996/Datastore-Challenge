@@ -64,24 +64,25 @@ public class MainApplication {
 
             // if command line has args select and order
             if (cmd.getOptions().length == 2) {
+                List<List<Object>> read = new ArrayList<>();
                 if (cmd.hasOption("s") && cmd.hasOption("o")) {
                     String valueRead = cmd.getOptionValue("s");
                     List<String> valuesList = new ArrayList<>(Splitter.on(",").splitToList(valueRead));
                     List<DatastoreEntity> lists = selectData(args);
                     orderData(args, lists);
-                    System.out.println("only s and o");
-                    for (DatastoreEntity l : lists) {
-                        System.out.println(l);
-                    }
+                    SelectDesiredFields(read, valuesList, lists);
                 }
             }
 
             // if command line has args select and filter
             if (cmd.getOptions().length == 2) {
                 if (cmd.hasOption("s") && cmd.hasOption("f")) {
+                    List<List<Object>> readFilter = new ArrayList<>();
+                    String valueRead = cmd.getOptionValue("s");
+                    List<String> valuesListFilter = new ArrayList<>(Splitter.on(",").splitToList(valueRead));
                     List<DatastoreEntity> lists = selectData(args);
-                    filterData(args, lists);
-                    System.out.println("only s and f");
+                    List<DatastoreEntity> filterList = filterData(args, lists);
+                    SelectDesiredFields(readFilter, valuesListFilter, filterList);
                 }
             }
 
@@ -91,12 +92,29 @@ public class MainApplication {
 
     }
 
+    private static void SelectDesiredFields(List<List<Object>> readFilter, List<String> valuesListFilter, List<DatastoreEntity> filterList) {
+        for (DatastoreEntity l : filterList) {
+            List<Object> readString = new ArrayList<>();
+            if (valuesListFilter.contains("stb")) {readString.add(l.getStb());}
+            if (valuesListFilter.contains("title")) {readString.add(l.getTitle());}
+            if (valuesListFilter.contains("provider")) {readString.add(l.getProvider());}
+            if (valuesListFilter.contains("date")) {readString.add(l.getDate());}
+            if (valuesListFilter.contains("rev")) {readString.add(l.getRev());}
+            if (valuesListFilter.contains("view_time")) {readString.add(l.getViewTime());}
+            readFilter.add(readString);
+        }
+        for (Object l : readFilter) {
+            System.out.println(l);
+        }
+    }
+
     /**
      *  Filter data passed in the command line using -f
      * @param args
      * @param lists
      */
-    private static void filterData(String[] args, List<DatastoreEntity> lists) {
+    private static  List<DatastoreEntity> filterData(String[] args, List<DatastoreEntity> lists) {
+        List<DatastoreEntity> listOfReturns = new ArrayList<>();
         if (cmd.hasOption("f")) {
             String valuesRead = cmd.getOptionValue("f");
             List<String> valueList = new ArrayList<>(Splitter.on("=").splitToList(valuesRead));
@@ -127,11 +145,12 @@ public class MainApplication {
                     keyword = l.getViewTime();
                 }
                 if (valueList.get(1).contains(keyword.toString())) {
-                    System.out.println(l);
+                    listOfReturns.add(l);
                 }
 
             }
         }
+        return listOfReturns;
     }
 
     /**
@@ -165,7 +184,6 @@ public class MainApplication {
     }
 
     private static List<DatastoreEntity> selectData(String[] args) throws IOException{
-        String stb = " ";
         String[] line;
         List<DatastoreEntity> listOfReturns = new ArrayList<>();
         String valueRead = cmd.getOptionValue("s");
@@ -241,6 +259,12 @@ public class MainApplication {
                 String year = str[0];
                 String month = str[1];
 
+                //set up a Composite Key
+                List<Object> compositeKey = new ArrayList<>();
+                compositeKey.add(dt.getStb());
+                compositeKey.add(dt.getTitle());
+                compositeKey.add(dt.getDate());
+
                 // if a file with that name doesnt exist, make it
                 if (!doesDatastoreExist(year, month)) {
                     writer = new CSVWriter(new FileWriter("./datastore/" + year + "-" + month +".csv", true));
@@ -263,9 +287,11 @@ public class MainApplication {
                         //iterates over csv file currently being considered for the line until you find null
                         while ((datastoreLine = read.readNext()) != null) {
 
-                             if (dt.getTitle().matches(datastoreLine[1])) {
+                             if (dt.getDate().matches(datastoreLine[3])) {
                                 break;
                             }
+
+                             // if you have
                         }
                         if (datastoreLine == null) {
                             writer.writeNext(nextLine);

@@ -53,4 +53,4 @@ For the arguments parsing I used Apache's Commons CLI to parse the command line 
 
 selectData and filterData methods both return a list of custom object class. 
 
-The way Order works is it uses ChainedComparitor to be able to sort the queries by more than one field.
+The way Order works is it uses ChainedComparator to be able to sort the queries by more than one field.
