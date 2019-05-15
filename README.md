@@ -1,4 +1,18 @@
 ## Datastore Challenge 
+
+### To Run
+The dataset is in the project. I have not made it ready any psv file with any name yet, but the data in this one could be changed :) And then it's ran with this command
+ 
+    ./gradlew run --args="-r ./dataset.psv"
+
+To select and order the data from the datastore
+
+    ./gradlew run --args="-s stb,title,date -o date,title"
+
+To select and then filter data from the datastore
+
+    ./gradlew run --args="-s stb,title -f title='the hobbit'"
+     
 ### Design 
 
 So the way I approached the problem is I broke it down into pieces. 
