@@ -14,16 +14,20 @@ import org.apache.commons.cli.*;
 
 public class MainApplication {
 
-    //maybe set the cmd as global
+    // Set the cmd, and header as globals to be used across the program
     final static Options options  = new Options();
     private static CommandLine cmd;
     private static String[] header = ("STB|TITLE|PROVIDER|DATE|REV|VIEW_TIME").split("\\|");
-
 
     public static void main(String[] args) throws IOException {
         queryTool(args);
     }
 
+    /**
+     * Method sets up the Apache Commons CLI for parsing command line arguments
+     * @param args
+     * @throws IOException
+     */
     private static void queryTool(String[] args) throws IOException{
         // ---------- Read file args option ----------
         Option readFile = new Option("r", "read", true, "Read psv file to import into datastore.");
@@ -92,7 +96,12 @@ public class MainApplication {
 
     }
 
-    //Select which fields to show the user
+    /**
+     * Select which fields to show the user after you filter or order
+     * @param readFilter
+     * @param valuesListFilter
+     * @param filterList
+     */
     private static void SelectDesiredFields(List<List<Object>> readFilter, List<String> valuesListFilter, List<DatastoreEntity> filterList) {
         for (DatastoreEntity l : filterList) {
             List<Object> readString = new ArrayList<>();
@@ -109,23 +118,28 @@ public class MainApplication {
         }
     }
 
-    // Select data from the Datastore, return DatastoreEntity
+    /**
+     * Select data from the Datastore
+     * @param args
+     * @return DatastoreEntity
+     * @throws IOException
+     */
     private static List<DatastoreEntity> selectData(String[] args) throws IOException{
         String[] line;
         List<DatastoreEntity> listOfReturns = new ArrayList<>();
-        String valueRead = cmd.getOptionValue("s");
-        List<String> valuesList = new ArrayList<>(Splitter.on(",").splitToList(valueRead));
 
+        // Check if file doesnt exist
         File dir = new File("./datastore");
         if (!dir.isDirectory()) {
             System.out.println(listOfReturns);
             return listOfReturns;
         }
 
+        // Check if file exists and then create a reader to read from the csv files
+        // and pass each line through the POJO class
         for (File file : Objects.requireNonNull(dir.listFiles())) {
             if (file.isFile()) {
                 Path path = Paths.get(file.toString());
-
                 CSVParser parser = new CSVParserBuilder().withSeparator(',').build();
                 try (BufferedReader br = Files.newBufferedReader(path,
                         StandardCharsets.UTF_8);
@@ -143,14 +157,22 @@ public class MainApplication {
         return listOfReturns;
     }
 
-    // Filter data method
+    /**
+     * Filter data selected from the Datastore
+     * @param args
+     * @param lists
+     * @return a List of DatastoreEntities
+     */
     private static  List<DatastoreEntity> filterData(String[] args, List<DatastoreEntity> lists) {
         List<DatastoreEntity> listOfReturns = new ArrayList<>();
         if (cmd.hasOption("f")) {
             String valuesRead = cmd.getOptionValue("f");
             List<String> valueList = new ArrayList<>(Splitter.on("=").splitToList(valuesRead));
-
             Object keyword = " ";
+
+            // Check for different cases you can get for the first part of the argument following
+            // the -f flag. e.g., -f stb=stb1 where valueList.get(0) would be stb
+            // and valueList.get(1) would be the argument after the = separator.
             for (DatastoreEntity l : lists) {
                 if (valueList.get(0).equalsIgnoreCase("stb")) {
                     keyword = l.getStb();
@@ -184,7 +206,11 @@ public class MainApplication {
         return listOfReturns;
     }
 
-    //Order data method
+    /**
+     * Order data method. Allows for ordering of a single field as well as multiple fields.
+     * @param args
+     * @param lists
+     */
     private static void orderData(String[] args, List<DatastoreEntity> lists) {
 
         if (cmd.hasOption("o")) {
@@ -210,7 +236,11 @@ public class MainApplication {
         }
     }
 
-    // read psv file and import to Datastore
+    /**
+     * Read PSV file and import to Datastore where it saves data in CSV files
+     * @param myFilePath
+     * @throws IOException
+     */
     private static void readAndParseFile(String myFilePath) throws IOException {
         DatastoreEntity dt;
         //  ---------- Import data from the file ----------
@@ -230,10 +260,8 @@ public class MainApplication {
             String[] nextLine;
             CSVWriter writer;
 
-            /**
-             * Parse the PSV file until you run out of next lines.
-             * And add lines to the datastore here
-             */
+            // Parse the PSV file until you run out of next lines.
+            // And add lines to the datastore here
             while ((nextLine = reader.readNext()) != null) {
                 dt = dataEntity(nextLine);
                 String[] str = dt.getDate().split("-");
@@ -258,21 +286,12 @@ public class MainApplication {
                        //read the csv files
                         CSVReader read = new CSVReader(new FileReader(p));
 
-                        /**
-                         * for each line you are parsing, iterate over the csv file from line 1 to end of file.
-                         * if you find a time that matches yours then read next line from parsing.
-                         * iterate again
-                         * if you dont find any, place the line and iterate again
-                         */
-
                         //iterates over csv file currently being considered for the line until you find null
                         while ((datastoreLine = read.readNext()) != null) {
 
                              if (dt.getTitle().matches(datastoreLine[1])) {
                                 break;
                             }
-
-                             // if you have
                         }
                         if (datastoreLine == null) {
                             writer.writeNext(nextLine);
@@ -287,7 +306,7 @@ public class MainApplication {
     }
 
     /**
-     * Checks if datastore exists
+     * Checks if Datastore exists
      * @return boolean exists
      */
     private static boolean doesDatastoreExist(String y, String m) {
@@ -303,7 +322,7 @@ public class MainApplication {
     }
 
     /**
-     * Check if datastore file is empty
+     * Check if Datastore file is empty
      * @return boolean isEmpty
      */
     private static boolean isDatastoreEmpty(File datastorePath) throws IOException {
@@ -320,7 +339,11 @@ public class MainApplication {
         return isEmpty;
     }
 
-    // DatastoreEntity method
+    /**
+     * DatastoreEntity method
+     * @param movieEntry
+     * @return
+     */
     private static DatastoreEntity dataEntity(String[] movieEntry){
 
         String pattern = movieEntry[3];
