@@ -194,7 +194,7 @@ public class MainApplication {
                     keyword = l.getRev();
                 }
 
-                if (valueList.get(0).equalsIgnoreCase("view_time")) {
+                if (valueList.get(0).equalsIgnoreCase("time")) {
                     keyword = l.getViewTime();
                 }
                 if (valueList.get(1).contains(keyword.toString())) {
