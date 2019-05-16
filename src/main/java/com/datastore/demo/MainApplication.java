@@ -101,7 +101,7 @@ public class MainApplication {
             if (valuesListFilter.contains("provider")) {readString.add(l.getProvider());}
             if (valuesListFilter.contains("date")) {readString.add(l.getDate());}
             if (valuesListFilter.contains("rev")) {readString.add(l.getRev());}
-            if (valuesListFilter.contains("view_time")) {readString.add(l.getViewTime());}
+            if (valuesListFilter.contains("time")) {readString.add(l.getViewTime());}
             readFilter.add(readString);
         }
         for (Object l : readFilter) {
