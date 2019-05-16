@@ -92,6 +92,7 @@ public class MainApplication {
 
     }
 
+    //Select which fields to show the user
     private static void SelectDesiredFields(List<List<Object>> readFilter, List<String> valuesListFilter, List<DatastoreEntity> filterList) {
         for (DatastoreEntity l : filterList) {
             List<Object> readString = new ArrayList<>();
@@ -108,11 +109,41 @@ public class MainApplication {
         }
     }
 
-    /**
-     *  Filter data passed in the command line using -f
-     * @param args
-     * @param lists
-     */
+    // Select data from the Datastore, return DatastoreEntity
+    private static List<DatastoreEntity> selectData(String[] args) throws IOException{
+        String[] line;
+        List<DatastoreEntity> listOfReturns = new ArrayList<>();
+        String valueRead = cmd.getOptionValue("s");
+        List<String> valuesList = new ArrayList<>(Splitter.on(",").splitToList(valueRead));
+
+        File dir = new File("./datastore");
+        if (!dir.isDirectory()) {
+            System.out.println(listOfReturns);
+            return listOfReturns;
+        }
+
+        for (File file : Objects.requireNonNull(dir.listFiles())) {
+            if (file.isFile()) {
+                Path path = Paths.get(file.toString());
+
+                CSVParser parser = new CSVParserBuilder().withSeparator(',').build();
+                try (BufferedReader br = Files.newBufferedReader(path,
+                        StandardCharsets.UTF_8);
+                     CSVReader reader = new CSVReaderBuilder(br).withCSVParser(parser)
+                             //skip header
+                             .withSkipLines(1)
+                             .build()) {
+                    while ((line = reader.readNext()) != null) {
+                        DatastoreEntity dt = dataEntity(line);
+                        listOfReturns.add(dt);
+                    }
+                }
+            }
+        }
+        return listOfReturns;
+    }
+
+    // Filter data method
     private static  List<DatastoreEntity> filterData(String[] args, List<DatastoreEntity> lists) {
         List<DatastoreEntity> listOfReturns = new ArrayList<>();
         if (cmd.hasOption("f")) {
@@ -153,11 +184,7 @@ public class MainApplication {
         return listOfReturns;
     }
 
-    /**
-     * Order data output by command line args -s
-     *
-     * @param args
-     */
+    //Order data method
     private static void orderData(String[] args, List<DatastoreEntity> lists) {
 
         if (cmd.hasOption("o")) {
@@ -183,53 +210,7 @@ public class MainApplication {
         }
     }
 
-    private static List<DatastoreEntity> selectData(String[] args) throws IOException{
-        String[] line;
-        List<DatastoreEntity> listOfReturns = new ArrayList<>();
-        String valueRead = cmd.getOptionValue("s");
-        List<String> valuesList = new ArrayList<>(Splitter.on(",").splitToList(valueRead));
-
-        File dir = new File("./datastore");
-        if (!dir.isDirectory()) {
-            System.out.println(listOfReturns);
-            return listOfReturns;
-        }
-
-        for (File file : Objects.requireNonNull(dir.listFiles())) {
-            if (file.isFile()) {
-                Path path = Paths.get(file.toString());
-
-                CSVParser parser = new CSVParserBuilder().withSeparator(',').build();
-                try (BufferedReader br = Files.newBufferedReader(path,
-                        StandardCharsets.UTF_8);
-                     CSVReader reader = new CSVReaderBuilder(br).withCSVParser(parser)
-                             //skip header
-                             .withSkipLines(1)
-                             .build()) {
-                   while ((line = reader.readNext()) != null) {
-                       DatastoreEntity dt = dataEntity(line);
-                       listOfReturns.add(dt);
-                       }
-                   }
-                }
-            }
-        return listOfReturns;
-    }
-
-    private static DatastoreEntity dataEntity(String[] movieEntry){
-
-        String pattern = movieEntry[3];
-        SimpleDateFormat formatSimple = new SimpleDateFormat(pattern);
-        String stb = movieEntry[0];
-        String title = movieEntry[1];
-        String provider = movieEntry[2];
-        String date = formatSimple.format(new Date());
-        double rev = Double.parseDouble(movieEntry[4]);
-        String view_time = movieEntry[5];
-
-        return new DatastoreEntity(stb, title, provider,  date, rev,  view_time);
-    }
-
+    // read psv file and import to Datastore
     private static void readAndParseFile(String myFilePath) throws IOException {
         DatastoreEntity dt;
         //  ---------- Import data from the file ----------
@@ -337,6 +318,21 @@ public class MainApplication {
                 isEmpty = false;
             }
         return isEmpty;
+    }
+
+    // DatastoreEntity method
+    private static DatastoreEntity dataEntity(String[] movieEntry){
+
+        String pattern = movieEntry[3];
+        SimpleDateFormat formatSimple = new SimpleDateFormat(pattern);
+        String stb = movieEntry[0];
+        String title = movieEntry[1];
+        String provider = movieEntry[2];
+        String date = formatSimple.format(new Date());
+        double rev = Double.parseDouble(movieEntry[4]);
+        String view_time = movieEntry[5];
+
+        return new DatastoreEntity(stb, title, provider,  date, rev,  view_time);
     }
 }
 
