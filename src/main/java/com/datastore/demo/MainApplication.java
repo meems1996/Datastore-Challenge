@@ -287,7 +287,7 @@ public class MainApplication {
                         //iterates over csv file currently being considered for the line until you find null
                         while ((datastoreLine = read.readNext()) != null) {
 
-                             if (dt.getDate().matches(datastoreLine[3])) {
+                             if (dt.getTitle().matches(datastoreLine[1])) {
                                 break;
                             }
 
