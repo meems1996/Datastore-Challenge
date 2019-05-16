@@ -224,7 +224,7 @@ public class MainApplication {
             map.put("provider", new ProviderComparator());
             map.put("date", new DateComparator());
             map.put("rev", new RevComparator());
-            map.put("view_time", new ViewTimeComparator());
+            map.put("time", new ViewTimeComparator());
 
             // Loop through orderBy and add each comparator in the correct order
             List<Comparator<DatastoreEntity>> comparators = valueList.stream()
@@ -299,7 +299,7 @@ public class MainApplication {
                             compositeKey.add(datastoreLine[3]);
 
                             // compare them to check for equality.If they are equal at their composite key
-                            // then break and go to next line. 
+                            // then break and go to next line.
                              if (dt.getTitle().matches(datastoreLine[1])) {
                                 break;
                             }
