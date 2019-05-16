@@ -288,21 +288,30 @@ public class MainApplication {
 
                         //iterates over csv file currently being considered for the line until you find null
                         while ((datastoreLine = read.readNext()) != null) {
+
+                            if (datastoreLine[0].matches("STB")){
+                                continue;
+                            }
                             //set up next composite key so that you can get the composite key of the
                             // line we are comparing to the lines in the csv files
                             List<Object> fileCompositeKey = new ArrayList<>();
                             // add stb to composite key
-                            compositeKey.add(datastoreLine[0]);
+                            fileCompositeKey.add(datastoreLine[0]);
                             // add title to composite key
-                            compositeKey.add(datastoreLine[1]);
+                            fileCompositeKey.add(datastoreLine[1]);
                             // add date to composite key
-                            compositeKey.add(datastoreLine[3]);
+                            fileCompositeKey.add(datastoreLine[3]);
 
                             // compare them to check for equality.If they are equal at their composite key
                             // then break and go to next line.
-                             if (dt.getTitle().matches(datastoreLine[1])) {
+                            if (compositeKey.get(0).equals(fileCompositeKey.get(0)) &&
+                                compositeKey.get(1).equals(fileCompositeKey.get(1)) &&
+                                compositeKey.get(2).equals(fileCompositeKey.get(2))) {
                                 break;
                             }
+//                             if (dt.getTitle().matches(datastoreLine[1])) {
+//                                break;
+//                            }
                         }
                         if (datastoreLine == null) {
                             writer.writeNext(nextLine);

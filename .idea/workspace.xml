@@ -4,12 +4,21 @@
     <list default="true" id="ff28bc83-1af2-4ab1-ab3d-938fe3267b65" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/datastore/demo/MainApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/datastore/demo/MainApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset.psv" beforeDir="false" afterPath="$PROJECT_DIR$/dataset.psv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datastore/2010-03.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datastore/2011-01.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datastore/2012-01.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datastore/2018-01.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/datastore/demo/DatastoreEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/datastore/demo/DatastoreEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/datastore/demo/MainApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/datastore/demo/MainApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/datastore/demo/STBComparator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/datastore/demo/STBComparator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/datastore/demo/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datastore/demo/MainApplication.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -79,8 +88,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/datastore/demo/MainApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="226" column="21" selection-start-line="226" selection-start-column="21" selection-end-line="226" selection-end-column="21" />
+            <state relative-caret-position="483">
+              <caret line="315" column="25" lean-forward="true" selection-start-line="315" selection-start-column="25" selection-end-line="315" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -98,34 +107,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="-58">
-                <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/datastore/2012-01.csv">
-          <provider selected="true" editor-type-id="csv-text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-            </state>
-          </provider>
-          <provider editor-type-id="csv-table-editor">
-            <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dataset.psv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="7" lean-forward="true" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+            <state relative-caret-position="90">
+              <caret line="6" column="32" lean-forward="true" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -189,16 +174,16 @@
         <option value="$PROJECT_DIR$/src/main/java/com/datastore/demo/RevComparator.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/datastore/demo/ViewTimeComparator.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/datastore/demo/DatastoreEntity.java" />
-        <option value="$PROJECT_DIR$/dataset.psv" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/dataset.psv" />
         <option value="$PROJECT_DIR$/src/main/java/com/datastore/demo/MainApplication.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="587" />
+    <option name="x" value="203" />
     <option name="y" value="23" />
-    <option name="width" value="853" />
+    <option name="width" value="1237" />
     <option name="height" value="809" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -260,7 +245,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558031978514" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558033573798" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -388,18 +373,18 @@
       <workItem from="1557129822678" duration="29919000" />
       <workItem from="1557212595915" duration="8142000" />
       <workItem from="1557222047595" duration="42269000" />
-      <workItem from="1557339635669" duration="148066000" />
+      <workItem from="1557339635669" duration="149485000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="297051000" />
+    <option name="totallyTimeSpent" value="298470000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="587" y="23" width="853" height="809" extended-state="0" />
+    <frame x="203" y="23" width="1237" height="809" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.37162954" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.38399354" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Learn" order="3" />
@@ -410,8 +395,8 @@
       <window_info anchor="bottom" id="Duplicate detector" weight="0.3292683" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32914925" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49892703" weight="0.3902439" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.33333334" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49892703" visible="true" weight="0.3902439" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.52168024" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -443,6 +428,16 @@
     <option name="version" value="1" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/datastore/demo/MainApplication.java</url>
+          <line>290</line>
+          <properties />
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="lists" language="JAVA" />
@@ -757,10 +752,20 @@
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="-58">
+            <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dataset.psv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="7" lean-forward="true" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+        <state relative-caret-position="90">
+          <caret line="6" column="32" lean-forward="true" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -774,16 +779,6 @@
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-58">
-            <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/datastore/demo/ViewTimeComparator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -793,8 +788,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/datastore/demo/MainApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="226" column="21" selection-start-line="226" selection-start-column="21" selection-end-line="226" selection-end-column="21" />
+        <state relative-caret-position="483">
+          <caret line="315" column="25" lean-forward="true" selection-start-line="315" selection-start-column="25" selection-end-line="315" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
